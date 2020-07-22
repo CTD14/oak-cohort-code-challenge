@@ -38,7 +38,7 @@ const LoginPage = () => {
   };
 
   return (
-    <section id='body' className='container'>
+    <section id='login' className='container'>
       <div className='row padding-40-0'>
         <div className='col text-center'>
           <h1>Registration!</h1>
