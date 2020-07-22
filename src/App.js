@@ -1,12 +1,44 @@
-import React, { useContext, useState } from 'react';
-import { Form } from 'react-bootstrap';
+import React, { useState } from 'react';
+import './App.css';
+import { Form, Button } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import camera from './img/camera.jpg';
 
 const LoginPage = () => {
   const [validated, setValidated] = useState(false);
+  const [selectedValue, setSelectedValue] = React.useState('a');
+  const [name, setName] = useState('Full Name');
+  const [email, setEmail] = useState('Email');
+  const [date, setDate] = useState('May, 25, 1977');
+  const [city, setCity] = useState('City');
+  const [country, setCountry] = useState('Country');
+  const [thing, setThing] = useState('');
+  function handleName(e) {
+    setName(e.target.value);
+    console.log(name);
+  }
+  function handleEmail(e) {
+    setEmail(e.target.value);
+    console.log(email);
+  }
+  function handleDate(e) {
+    setDate(e.target.value);
+    console.log(date);
+  }
+  function handleCity(e) {
+    setCity(e.target.value);
+    console.log(city);
+  }
+  function handleCountry(e) {
+    setCountry(e.target.value);
+    console.log(country);
+  }
+  const handleChange = event => {
+    setSelectedValue(event.target.value);
+  };
 
   return (
-    <section id='login' className='container'>
+    <section id='body' className='container'>
       <div className='row padding-40-0'>
         <div className='col text-center'>
           <h1>Registration!</h1>
@@ -17,19 +49,37 @@ const LoginPage = () => {
       </div>
 
       <div class='row'>
-        <div class='col-md-4'>
-          <img alt='blue-camera' class='rounded float-left' src={camera} />
-        </div>
         <div class='col-md-4 ml-auto'>
+          <img
+            alt='blue-camera'
+            className='rounded mb-0'
+            height='580px'
+            width='450px'
+            src={camera}
+          />{' '}
+        </div>
+        <div class='col-md-6 ml-auto'>
           <div className='form'>
             <Form noValidate validated={validated}>
               <div className='form-group' md='4' controlId='validationCustom01'>
                 <label htmlFor='text'>Name</label>
-                <Form.Control required type='text' className='form-control' />
+                <Form.Control
+                  required
+                  type='text'
+                  className='form-control'
+                  variant='filled'
+                  onChange={handleName}
+                />
               </div>
               <div className='form-group' md='4' controlId='validationCustom01'>
                 <label htmlFor='Email'>Email</label>
-                <Form.Control required type='email' className='form-control' />
+                <Form.Control
+                  required
+                  type='email'
+                  className='form-control'
+                  variant='filled'
+                  onChange={handleEmail}
+                />
                 <Form.Control.Feedback type='invalid'>
                   Please provide a valid email.
                 </Form.Control.Feedback>
@@ -37,10 +87,12 @@ const LoginPage = () => {
               <div class='form-check form-check-inline'>
                 <input
                   class='form-check-input'
+                  checked={selectedValue === 'a'}
+                  onChange={handleChange}
                   type='radio'
-                  name='inlineRadioOptions'
-                  id='inlineRadio1'
-                  value='option1'
+                  value='a'
+                  name='radio-button-demo'
+                  onClick={() => setThing('Male')}
                 />
                 <label class='form-check-label' for='inlineRadio1'>
                   Male
@@ -49,10 +101,12 @@ const LoginPage = () => {
               <div class='form-check form-check-inline'>
                 <input
                   class='form-check-input'
+                  checked={selectedValue === 'b'}
+                  onChange={handleChange}
                   type='radio'
-                  name='inlineRadioOptions'
-                  id='inlineRadio2'
-                  value='option2'
+                  value='b'
+                  name='radio-button-demo'
+                  onClick={() => setThing('Female')}
                 />
                 <label class='form-check-label' for='inlineRadio2'>
                   Female
@@ -61,87 +115,56 @@ const LoginPage = () => {
               <br /> <br />
               <div className='form-group' md='4' controlId='validationCustom01'>
                 <label htmlFor='text'>Date of Birth</label>
-                <Form.Control required type='text' className='form-control' />
+                <Form.Control
+                  required
+                  type='text'
+                  className='form-control'
+                  variant='filled'
+                  onChange={handleDate}
+                />
                 <Form.Control.Feedback type='invalid'>
                   Please provide a valid date.
                 </Form.Control.Feedback>
               </div>
               <div className='form-group'>
                 <label htmlFor='text'>City</label>
-                <Form.Control required type='text' className='form-control' />
+                <Form.Control
+                  required
+                  type='text'
+                  className='form-control'
+                  variant='filled'
+                  onChange={handleCity}
+                />
               </div>
               <div className='form-group' md='4' controlId='validationCustom01'>
                 <label htmlFor='text'>Country</label>
-                <Form.Control required type='text' className='form-control' />
+                <Form.Control
+                  required
+                  type='text'
+                  className='form-control'
+                  variant='filled'
+                  onChange={handleCountry}
+                />
               </div>
-              <button className='btn btn-primary' type='submit'>
+              <Button
+                className='btn-btn primary'
+                onClick={() =>
+                  window.alert(`
+                    Name: ${name}
+                    Email: ${email}
+                    Gender: ${thing}
+                    Date: ${date}
+                    City: ${city}
+                    Country: ${country}
+                    `)
+                }
+              >
                 Sign In
-              </button>
+              </Button>
             </Form>
           </div>{' '}
         </div>
       </div>
-
-      {/* <div className="row sign-in"> */}
-      {/* <div className="form">
-          <Form noValidate validated={validated}>
-            <div className="form-group" md="4" controlId="validationCustom01">
-              <label htmlFor="text">Name</label>
-              <Form.Control required type="text" className="form-control" />
-            </div>
-            <div className="form-group" md="4" controlId="validationCustom01">
-              <label htmlFor="Email">Email</label>
-              <Form.Control required type="email" className="form-control" />
-              <Form.Control.Feedback type="invalid">
-                Please provide a valid email.
-              </Form.Control.Feedback>
-            </div>
-            <div class="form-check form-check-inline">
-              <input
-                class="form-check-input"
-                type="radio"
-                name="inlineRadioOptions"
-                id="inlineRadio1"
-                value="option1"
-              />
-              <label class="form-check-label" for="inlineRadio1">
-                Male
-              </label>
-            </div>
-            <div class="form-check form-check-inline">
-              <input
-                class="form-check-input"
-                type="radio"
-                name="inlineRadioOptions"
-                id="inlineRadio2"
-                value="option2"
-              />
-              <label class="form-check-label" for="inlineRadio2">
-                Female
-              </label>
-            </div>
-            <br /> <br />
-            <div className="form-group" md="4" controlId="validationCustom01">
-              <label htmlFor="text">Date of Birth</label>
-              <Form.Control required type="text" className="form-control" />
-              <Form.Control.Feedback type="invalid">
-                Please provide a valid date.
-              </Form.Control.Feedback>
-            </div>
-            <div className="form-group">
-              <label htmlFor="text">City</label>
-              <Form.Control required type="text" className="form-control" />
-            </div>
-            <div className="form-group" md="4" controlId="validationCustom01">
-              <label htmlFor="text">Country</label>
-              <Form.Control required type="text" className="form-control" />
-            </div>
-            <button className="btn btn-primary" type="submit">
-              Sign In
-            </button>
-          </Form>
-        </div> */}
-      {/* </div> */}
 
       <div className='row text-center'>
         <div className='col text-center'>
