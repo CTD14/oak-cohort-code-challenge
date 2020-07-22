@@ -1,4 +1,4 @@
 # oak-cohort-code-challenge
 Code Challenge
-Run an npm install
-Run npm start
+1. Run an npm install
+2. Run npm start
