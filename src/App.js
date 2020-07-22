@@ -13,6 +13,10 @@ const LoginPage = () => {
   const [city, setCity] = useState('City');
   const [country, setCountry] = useState('Country');
   const [thing, setThing] = useState('');
+  const [subscription, setSubscription] = useState('');
+
+  const refreshPage = () => window.location.reload(true);
+
   function handleName(e) {
     setName(e.target.value);
     console.log(name);
@@ -53,7 +57,7 @@ const LoginPage = () => {
           <img
             alt='blue-camera'
             className='rounded mb-0'
-            height='580px'
+            height='638px'
             width='450px'
             src={camera}
           />{' '}
@@ -146,6 +150,29 @@ const LoginPage = () => {
                   onChange={handleCountry}
                 />
               </div>
+              Subscription {'    '}
+              <button
+                type='button'
+                className='btn btn-light'
+                onClick={() => setSubscription('Bronze')}
+              >
+                Bronze
+              </button>{' '}
+              <button
+                type='button'
+                className='btn btn-outline-secondary'
+                onClick={() => setSubscription('Silver')}
+              >
+                Silver
+              </button>{' '}
+              <button
+                type='button'
+                className='btn btn-outline-warning'
+                onClick={() => setSubscription('Gold')}
+              >
+                Gold
+              </button>
+              <br /> <br />
               <Button
                 className='btn-btn primary'
                 onClick={() =>
@@ -156,10 +183,14 @@ const LoginPage = () => {
                     Date: ${date}
                     City: ${city}
                     Country: ${country}
+                    Subscription: ${subscription}
                     `)
                 }
               >
                 Sign In
+              </Button>{' '}
+              <Button className='btn btn-danger' onClick={refreshPage}>
+                Cancel
               </Button>
             </Form>
           </div>{' '}
@@ -168,7 +199,7 @@ const LoginPage = () => {
 
       <div className='row text-center'>
         <div className='col text-center'>
-          <span>Forgot your password?</span>
+          <span>Forgot your password? DAmn ;/</span>
         </div>
       </div>
     </section>
